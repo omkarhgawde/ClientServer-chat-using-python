@@ -1,0 +1,46 @@
+import socket
+
+port=9231
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(("",port))
+server_socket.listen(5)
+
+print "TCPclient waiting for port", port
+
+try:
+	client_socket, address = server_socket.accept()
+	print "Got a connection from: " , address
+	
+	while 1:
+	    
+	    QuitProg = False
+	    
+	    while 1:
+	    		    	
+		data = raw_input("Enter Message: ")
+		client_socket.send(data)
+		if ( data == 'over'):		  
+		    break		
+		elif ( data == 'quit'):
+		    	QuitProg = True;
+		    	break
+		    
+	    if(QuitProg == True):
+	    	break;
+	    	
+	    while 1:
+		    data = client_socket.recv(512)	    
+		    if ( data == 'over' ):
+			break;
+		    elif ( data == 'quit' ):
+			QuitProg = True;
+			break;
+		    else: print "Rec:", data
+	    if(QuitProg == True):
+	    	break;
+	    	
+except IOerror:
+	print "error"
+finally:
+	server_socket.close()
