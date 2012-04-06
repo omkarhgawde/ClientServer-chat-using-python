@@ -1,1 +1,11 @@
-dadada
+Client Server Chat using python
+
+A connection is established between a client and a server to exchange textual changes between the two machine using 
+socket() in python provided the programs are running on the two machines.
+
+The port numbers have to be synced before establishing a connection by both the server and the client.
+Messages can be sent one at a time i.e. either by the server or the client. 'Quit' or 'Over' keywords must be used to 
+transfer the control to the other machine.
+
+Multithreading can be used so that both the machines can send messages at the same time. Implementation multithreading 
+will be done soon.
